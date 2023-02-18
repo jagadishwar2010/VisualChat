@@ -49,3 +49,27 @@ display: flex;
     height: 100%;
     width: 100%;
 }
+
+/*--------------Room styling | Controls-------*/
+
+#controls-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    column-gap: 1em;
+    position: fixed;
+    bottom: 20px;
+}
+
+.control-icon {
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: beige;
+}
+
+#leave-btn {
+    background-color: rgb(255, 80, 80, 1);
+}
