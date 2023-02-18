@@ -2,9 +2,12 @@ from dotenv import load_dotenv
 import os
 import random
 import time
+import json
 from django.shortcuts import render
 from django.http import JsonResponse
 from agora_token_builder import RtcTokenBuilder
+from .models import RoomMember
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 load_dotenv()
@@ -29,3 +32,38 @@ def lobby(request):
 
 def room(request):
     return render(request, 'app/room.html')
+
+
+@csrf_exempt
+def create_member(request):
+    data = json.loads(request.body)
+    member, created = RoomMember.objects.get_or_create(
+        name=data['name'],
+        uid=data['UID'],
+        room_name=data['room_name']
+    )
+    return JsonResponse({'name': data['name']}, safe=False)
+
+
+def get_member(request):
+    uid = request.GET.get('uid')
+    room_name = request.GET.get('room_name')
+
+    member = RoomMember.objects.get(
+        uid=uid,
+        room_name=room_name
+    )
+    name = member.name
+    return JsonResponse({'name': name}, safe=False)
+
+
+@csrf_exempt
+def delete_member(request):
+    data = json.loads(request.body)
+    member = RoomMember.objects.get(
+        name=data['name'],
+        uid=data['UID'],
+        room_name=data['room_name']
+    )
+    member.delete()
+    return JsonResponse('Member was deleted.', safe=False)
