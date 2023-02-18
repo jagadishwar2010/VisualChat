@@ -10,17 +10,33 @@
             </div>
             <form id="form">
                 <div class="form-field">
+                    <input type="text" name="room" placeholder="Enter a room name..." style="text-transform: uppercase;">
+                </div>
+                <div class="form-field">
                     <input type="submit" value="Join-Stream">
                 </div>
             </form>
         </section>
     </main>
     <script type="text/javascript">
-    let form = document.getElementById('form');
-    let handleSubmit = async (e) => {
-        e.preventDefault();
-        window.open('/room', '_self');
-    }
-    form.addEventListener('submit', handleSubmit);
+        let form = document.getElementById('form');
+        let handleSubmit = async (e) => {
+            e.preventDefault();
+            let room = e.target.room.value.toUpperCase();
+
+            let response = await fetch(`/get_token/?channel=${room}`);
+
+            let data = await response.json();
+
+            let token = data.token;
+            let uid = data.uid;
+
+            sessionStorage.setItem('token', token)
+            sessionStorage.setItem('UID', uid)
+            sessionStorage.setItem('room', room)
+
+            window.open('/room', '_self');
+        }
+        form.addEventListener('submit', handleSubmit);
     </script>
 {% endblock %}
