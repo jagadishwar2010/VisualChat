@@ -48,7 +48,7 @@ def create_member(request):
 
 
 def get_member(request):
-    uid = request.GET.get('uid')
+    uid = request.GET.get('UID')
     room_name = request.GET.get('room_name')
 
     member = RoomMember.objects.get(
