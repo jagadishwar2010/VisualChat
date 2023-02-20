@@ -47,7 +47,7 @@ let handleUserJoined = async (user, mediaType) => {
 console.log("client subscribed");
 console.log("Mediatype", mediaType)
 console.log("user", user)
-    if (mediaType === 'video') {
+    if (mediaType) {
         console.log("HEllo");
         let player = document.getElementById(`user-container-$(user.uid)`);
 
