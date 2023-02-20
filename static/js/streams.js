@@ -41,9 +41,11 @@ let joinAndDisplayLocalStream = async () => {
 }
 
 let handleUserJoined = async (user, mediaType) => {
+    console.log("handleUserJoined started");
     remoteUsers[user.uid] = user;
     await client.subscribe(user, mediaType);
-
+console.log("client subscribed");
+console.log("Mediatype", mediaType)
     if (mediaType === 'video') {
 
         let player = document.getElementById(`user-container-$(user.uid)`);
