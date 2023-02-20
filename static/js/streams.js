@@ -49,7 +49,7 @@ console.log("Mediatype", mediaType)
 console.log("user", user)
     if (mediaType === 'video') {
         console.log("HEllo");
-        let player = document.getElementById(`user-container-$(user.uid)`);
+        let player = document.getElementById(`user-container-${user.uid}`);
 
         if (player != null) {
             player.remove();
