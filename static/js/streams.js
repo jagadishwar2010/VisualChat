@@ -46,6 +46,7 @@ let handleUserJoined = async (user, mediaType) => {
     await client.subscribe(user, mediaType);
 console.log("client subscribed");
 console.log("Mediatype", mediaType)
+console.log("user", user)
     if (mediaType === 'video') {
 
         let player = document.getElementById(`user-container-$(user.uid)`);
