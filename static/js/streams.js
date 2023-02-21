@@ -25,7 +25,7 @@ let joinAndDisplayLocalStream = async () => {
     localTracks = await AgoraRTC.createMicrophoneAndCameraTracks();
 
     let member = await createMember()
-        console.log("member",member);
+
     let player = `<div class="video-container" id="user-container-${UID}">
                     <div class="username-wrapper">
                         <span class="user-name">${member.name}</span>
@@ -37,18 +37,15 @@ let joinAndDisplayLocalStream = async () => {
 
     localTracks[1].play(`user-${UID}`);
 
-    await client.publish(localTracks[0], localTracks[1]);
+    await client.publish(localTracks[0]);
+    await client.publish(localTracks[1]);
 }
 
 let handleUserJoined = async (user, mediaType) => {
-    console.log("handleUserJoined started");
     remoteUsers[user.uid] = user;
     await client.subscribe(user, mediaType);
-console.log("client subscribed");
-console.log("Mediatype", mediaType)
-console.log("user", user)
+
     if (mediaType === 'video') {
-        console.log("HEllo");
         let player = document.getElementById(`user-container-${user.uid}`);
 
         if (player != null) {
@@ -56,7 +53,6 @@ console.log("user", user)
         }
 
         let member = await getMember(user)
-console.log("player", player);
 
         player = `<div class="video-container" id="user-container-${user.uid}">
                 <div class="username-wrapper">
