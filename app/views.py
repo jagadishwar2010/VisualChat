@@ -14,10 +14,8 @@ load_dotenv()
 
 
 def get_token(request):
-    # app_id = os.getenv('APP_ID')
-    # app_certificate = os.getenv('APP_CERTIFICATE')
-    app_id = "bd46496e208e467fa3331f094c0689cf"
-    app_certificate = "3924f3fdef5e4ff593bbc5af54dbefd8"
+    app_id = os.getenv('APP_ID')
+    app_certificate = os.getenv('APP_CERTIFICATE')
     channel_name = request.GET.get('channel')
     uid = random.randint(1, 230)
     expiration_time_in_seconds = 3600 * 24
