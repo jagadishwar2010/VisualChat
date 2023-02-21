@@ -7,7 +7,7 @@ This is a video chat web app built using Django, Agora and Javascript. This app 
    `git clone https://github.com/jagadishwar2010/VisualChat.git`
 
 2) Install the required packages:
-   `Install the required packages:`
+   `pip install -r requirements.txt`
 
 3) Apply database migrations:
    `python manage.py migrate`
