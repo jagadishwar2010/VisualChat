@@ -24,7 +24,7 @@ The development server will be available at http://localhost:8000/.
 
 1) Visit the homepage of the app.
 
-2) Enter your name and click "Join."
+2) Enter Room name and your name. Then click "Join-Stream"
 
 3) Grant access to your camera and microphone when prompted.
 
